@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NinjaFruit</title>
+</head>
+<body>
+  <h1>NinjaFruit</h1>
+  <p>Juego de habilidad interactivo (Testnet Pi)</p>
+  <button onclick="login()">Iniciar sesión con Pi</button>
+
+  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+  <script>
+    // Inicializa Pi en sandbox
+    Pi.init({ version: "2.0", sandbox: true });
+
+    async function login() {
+      try {
+        const scopes = ['username', 'payments'];
+        const auth = await Pi.authenticate(scopes);
+        alert("Bienvenido, " + auth.user.username);
+        console.log(auth);
+      } catch (err) {
+        alert("Error al iniciar sesión");
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>
